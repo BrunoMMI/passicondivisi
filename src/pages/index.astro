@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import CallToAction from "../components/CallToAction.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
+import { Image } from "astro:assets";
+import { SITE } from "../data/site";
+import { CONTACTS } from "../data/contacts";
+import { SERVICES } from "../data/services";
+import companionshipImage from "../assets/stock/home-intro-companionship.jpg";
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    name: SITE.legalName,
+    url: SITE.url,
+    email: CONTACTS.email,
+    telephone: CONTACTS.phone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: CONTACTS.address.street,
+      postalCode: CONTACTS.address.postalCode,
+      addressLocality: CONTACTS.address.city,
+      addressRegion: CONTACTS.address.province,
+      addressCountry: "IT",
+    },
+  },
+  { "@context": "https://schema.org", "@type": "WebSite", name: SITE.name, url: SITE.url },
+];
+---
+
+<BaseLayout title="Home" canonicalPath="/" jsonLd={jsonLd}>
+  <Hero />
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <div class="grid items-center gap-10 lg:grid-cols-2">
+        <div>
+          <SectionHeading
+            eyebrow="Chi siamo"
+            title="Non ci prendiamo cura delle fragilità. Ci prendiamo cura delle persone."
+          />
+          <p class="mt-6 text-ink/70">
+            La nostra Cooperativa Sociale nasce da un sogno che, con il tempo, è diventato una scelta di vita:
+            costruire una comunità in cui ogni persona possa sentirsi accolta, valorizzata e protagonista del proprio
+            percorso di vita.
+          </p>
+          <div class="mt-6">
+            <a href="/chi-siamo" class="font-semibold text-brand-purple hover:underline">Scopri la nostra storia →</a>
+          </div>
+        </div>
+        <Image
+          src={companionshipImage}
+          alt="Due amiche anziane sorridenti, una delle quali su una sedia a rotelle, in un parco"
+          width={800}
+          height={600}
+          loading="lazy"
+          class="w-full rounded-3xl object-cover shadow-lg"
+        />
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading eyebrow="Cosa offriamo" title="I nostri servizi" align="center" />
+      <div class="mt-10 grid gap-6 sm:grid-cols-2">
+        {SERVICES.map((service) => <ServiceCard service={service} />)}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/cosa-offriamo" class="font-semibold text-brand-purple hover:underline">Scopri tutti i servizi →</a>
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Il nostro progetto"
+        title="La nascita della nostra sede operativa"
+        align="center"
+      />
+      <p class="mt-6 text-center text-ink/70">
+        Dietro ogni servizio c'è un progetto concreto: la costruzione, passo dopo passo, di uno spazio pensato per
+        accogliere persone e famiglie.
+      </p>
+      <div class="mt-6 text-center">
+        <a href="/il-nostro-progetto" class="font-semibold text-brand-purple hover:underline">
+          Conosci il nostro progetto →
+        </a>
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+      <CallToAction
+        title="Sostieni Passi Condivisi"
+        description="Il tuo contributo aiuta a costruire percorsi di autonomia, relazione e comunità."
+        href="/sostienici"
+        label="Scopri come sostenerci"
+      />
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6">
+      <SectionHeading title="Parliamone insieme" align="center" />
+      <p class="mt-4 text-ink/70">{CONTACTS.email} · {CONTACTS.phoneDisplay}</p>
+      <a href="/contatti" class="mt-6 inline-block rounded-full bg-brand-purple px-6 py-3 font-semibold text-white">
+        Contattaci
+      </a>
+    </div>
+  </ScrollReveal>
+</BaseLayout>

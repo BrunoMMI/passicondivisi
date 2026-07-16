@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+import { SITE } from "../data/site";
+import heroImage from "../assets/stock/hero-hands-together.jpg";
+---
+
+<section class="relative overflow-hidden bg-paper px-4 py-20 sm:px-6 sm:py-28">
+  <div class="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+    <div class="text-center lg:text-left">
+      <h1 class="text-4xl font-semibold text-ink sm:text-5xl">Un passo alla volta, insieme</h1>
+      <p class="mt-6 text-lg text-ink/70">
+        {SITE.legalName} costruisce relazioni, autonomia e comunità con anziani e persone con disabilità a Piedimonte
+        Matese.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4 lg:justify-start">
+        <a
+          href="/chi-siamo"
+          class="rounded-full bg-brand-purple px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-purple-dark"
+        >
+          Scopri chi siamo
+        </a>
+        <a
+          href="/sostienici"
+          class="rounded-full bg-brand-yellow px-6 py-3 font-semibold text-ink transition-colors hover:bg-brand-yellow-dark"
+        >
+          Sostieni Passi Condivisi
+        </a>
+      </div>
+    </div>
+    <Image
+      src={heroImage}
+      alt="Un gruppo di persone unisce le mani, simbolo di comunità e sostegno reciproco"
+      width={800}
+      height={600}
+      loading="eager"
+      fetchpriority="high"
+      class="w-full rounded-3xl object-cover shadow-lg"
+    />
+  </div>
+</section>

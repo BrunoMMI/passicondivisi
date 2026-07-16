@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { FOUNDERS } from "../data/founders";
+import { Image } from "astro:assets";
+import teamPhoto from "../assets/gallery/team-group.jpg";
+import foundersPortrait from "../assets/gallery/founders-portrait.jpg";
+
+const jsonLd = [{ "@context": "https://schema.org", "@type": "WebPage", name: "Chi siamo" }];
+---
+
+<BaseLayout title="Chi siamo" canonicalPath="/chi-siamo" jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl px-4 pt-8 sm:px-6">
+    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Chi siamo" }]} />
+  </div>
+
+  <header class="mx-auto max-w-3xl px-4 py-12 text-center sm:px-6">
+    <h1 class="text-4xl font-semibold text-ink sm:text-5xl">Chi siamo</h1>
+    <p class="mt-6 text-lg text-ink/70">
+      La nostra Cooperativa Sociale nasce da un sogno che, con il tempo, è diventato una scelta di vita: non offrire
+      semplicemente servizi, ma costruire una comunità in cui ogni persona possa sentirsi accolta, valorizzata e
+      protagonista del proprio percorso di vita.
+    </p>
+  </header>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 pb-4 sm:px-6">
+      <figure>
+        <Image
+          src={foundersPortrait}
+          alt="Melania e Gianmarco, fondatori di Passi Condivisi, sorridenti nella sede della cooperativa"
+          width={900}
+          height={1200}
+          class="mx-auto w-full max-w-md rounded-3xl object-cover shadow-lg"
+        />
+        <figcaption class="mt-4 text-center text-sm text-ink/60">
+          Melania e Gianmarco, fondatori di Passi Condivisi
+        </figcaption>
+      </figure>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <div class="rounded-3xl bg-white p-8 shadow-sm sm:p-10">
+        <SectionHeading title="Il nostro impegno" align="center" />
+        <div class="mx-auto mt-6 max-w-2xl space-y-4 text-ink/80">
+          <p>
+            Siamo convinti che ogni essere umano, indipendentemente dall'età, dalla condizione fisica, cognitiva o
+            sociale, possieda un valore che non può essere misurato né definito dalle proprie fragilità.
+          </p>
+          <p>
+            Non vogliamo limitarci ad assistere le persone. Vogliamo costruire relazioni. Vogliamo essere una
+            presenza capace di ascoltare, sostenere, accompagnare e creare opportunità.
+          </p>
+          <p>
+            Per noi la fragilità non è un limite, ma una dimensione della vita che merita rispetto, attenzione e
+            fiducia. Crediamo che ogni anziano custodisca un patrimonio di memoria, esperienza e valori che
+            appartiene all'intera comunità. Crediamo che ogni bambino, ragazzo o adulto con disabilità possieda
+            capacità, sensibilità e talenti che aspettano soltanto di essere scoperti e valorizzati.
+          </p>
+        </div>
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-3xl px-4 py-4 sm:px-6">
+      <blockquote
+        class="rounded-2xl border-l-4 border-brand-purple bg-brand-purple/5 px-6 py-8 text-center text-xl italic text-ink"
+      >
+        "Perché non ci prendiamo cura delle fragilità. Ci prendiamo cura delle persone. E in ogni persona scegliamo
+        di vedere, prima di tutto, il suo valore, il suo futuro e la sua dignità."
+      </blockquote>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <div class="rounded-3xl bg-white p-8 shadow-sm sm:p-10">
+        <SectionHeading title="Cosa significa per noi prendersi cura" align="center" />
+        <ul class="mx-auto mt-6 max-w-xl space-y-3 text-ink/80">
+          <li class="flex gap-3">
+            <span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-brand-purple" aria-hidden="true"></span>
+            <span>Prendersi cura significa restituire dignità.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-brand-purple" aria-hidden="true"></span>
+            <span>Significa aiutare una persona a conservare e sviluppare la propria autonomia.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-brand-purple" aria-hidden="true"></span>
+            <span>Significa creare occasioni di incontro che spezzino la solitudine.</span>
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-brand-purple" aria-hidden="true"></span>
+            <span>Significa accompagnare le famiglie con professionalità, competenza e vicinanza.</span>
+          </li>
+        </ul>
+        <p class="mx-auto mt-6 max-w-xl text-center text-ink/80">
+          Crediamo profondamente che nessuno debba sentirsi un peso. Ogni persona ha diritto a sentirsi utile,
+          riconosciuta e parte della comunità.
+        </p>
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+      <SectionHeading
+        title="La nostra storia"
+        subtitle="Nasce dall'incontro di due percorsi professionali diversi, guidati dagli stessi valori."
+        align="center"
+      />
+      <div class="mt-8 grid gap-6 sm:grid-cols-2">
+        {
+          FOUNDERS.map((founder) => (
+            <article class="rounded-2xl bg-white p-6 shadow-sm">
+              <h3 class="text-xl font-semibold text-ink">{founder.name}</h3>
+              {founder.bio.map((paragraph) => (
+                <p class="mt-3 text-sm text-ink/70">{paragraph}</p>
+              ))}
+            </article>
+          ))
+        }
+      </div>
+      <p class="mx-auto mt-8 max-w-2xl text-center text-ink/80">
+        Le loro esperienze, maturate in contesti diversi ma guidate dagli stessi valori, hanno insegnato loro che la
+        vera assistenza non consiste nel fare le cose al posto delle persone, ma nel creare le condizioni affinché
+        possano sviluppare le proprie capacità, conquistare autonomia e costruire il proprio progetto di vita.
+      </p>
+      <figure class="mt-10">
+        <Image
+          src={teamPhoto}
+          alt="Il gruppo fondatore di Passi Condivisi riunito all'aperto"
+          width={1200}
+          height={800}
+          class="w-full rounded-2xl object-cover shadow-lg"
+        />
+        <figcaption class="mt-4 text-center text-sm text-ink/60">
+          Il gruppo fondatore di Passi Condivisi
+        </figcaption>
+      </figure>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6">
+      <p class="text-xl font-medium text-ink">
+        Il nostro obiettivo non è occupare il tempo delle persone. Il nostro obiettivo è dare significato al tempo.
+      </p>
+      <a href="/cosa-offriamo" class="mt-6 inline-block font-semibold text-brand-purple hover:underline">
+        Scopri cosa offriamo →
+      </a>
+    </div>
+  </ScrollReveal>
+</BaseLayout>

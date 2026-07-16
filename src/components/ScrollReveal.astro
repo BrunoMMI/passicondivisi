@@ -1,0 +1,32 @@
+---
+interface Props {
+  as?: string;
+}
+
+const { as: Tag = "div" } = Astro.props;
+---
+
+<Tag data-reveal class="reveal-init">
+  <slot />
+</Tag>
+<style is:global>
+  .reveal-init {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+  }
+  .reveal-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-init {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+<script src="../scripts/scroll-reveal.ts"></script>

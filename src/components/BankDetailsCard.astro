@@ -1,0 +1,32 @@
+---
+import { BANK } from "../data/bank";
+import CopyIbanButton from "./CopyIbanButton.astro";
+---
+
+<div class="rounded-2xl border border-brand-purple/20 bg-white p-6 shadow-sm sm:p-8">
+  <div class="flex items-center gap-2 text-brand-purple">
+    <span aria-hidden="true">🔒</span>
+    <p class="text-sm font-semibold">Bonifico bancario sicuro</p>
+  </div>
+  <dl class="mt-4 space-y-3 text-sm text-ink/80">
+    <div>
+      <dt class="font-semibold text-ink">Intestatario</dt>
+      <dd>{BANK.accountHolder}</dd>
+    </div>
+    <div>
+      <dt class="font-semibold text-ink">Banca</dt>
+      <dd>{BANK.bankName}</dd>
+    </div>
+    <div>
+      <dt class="font-semibold text-ink">IBAN</dt>
+      <dd class="font-mono">{BANK.ibanDisplay}</dd>
+    </div>
+    <div>
+      <dt class="font-semibold text-ink">BIC/SWIFT</dt>
+      <dd class="font-mono">{BANK.bic}</dd>
+    </div>
+  </dl>
+  <div class="mt-6">
+    <CopyIbanButton iban={BANK.iban} />
+  </div>
+</div>

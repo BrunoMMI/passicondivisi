@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import CallToAction from "../components/CallToAction.astro";
+import { SERVICES } from "../data/services";
+
+const jsonLd = [{ "@context": "https://schema.org", "@type": "WebPage", name: "Cosa offriamo" }];
+---
+
+<BaseLayout title="Cosa offriamo" canonicalPath="/cosa-offriamo" jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl px-4 pt-8 sm:px-6">
+    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Cosa offriamo" }]} />
+  </div>
+  <header class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+    <h1 class="text-4xl font-semibold text-ink sm:text-5xl">Cosa offriamo</h1>
+    <p class="mt-6 text-lg text-ink/70">
+      Quattro servizi pensati per accompagnare anziani, persone con disabilità e le loro famiglie verso maggiore
+      autonomia e partecipazione.
+    </p>
+  </header>
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <div class="grid gap-6 sm:grid-cols-2">
+        {SERVICES.map((service) => <ServiceCard service={service} />)}
+      </div>
+    </div>
+  </ScrollReveal>
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+      <CallToAction title="Vuoi maggiori informazioni su un servizio?" href="/contatti" label="Contattaci" />
+    </div>
+  </ScrollReveal>
+</BaseLayout>

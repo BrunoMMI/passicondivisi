@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import ContactForm from "../components/ContactForm.astro";
+import SocialLinks from "../components/SocialLinks.astro";
+import { CONTACTS } from "../data/contacts";
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "WebPage", name: "Contatti" },
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPoint",
+    telephone: CONTACTS.phone,
+    email: CONTACTS.email,
+    contactType: "customer service",
+    areaServed: "IT",
+  },
+];
+
+// Bounding box approssimativo del comune di Piedimonte Matese (CE) — vista d'insieme,
+// non un pin puntuale sull'indirizzo esatto (nessuna geocodifica precisa disponibile nei materiali).
+const mapBbox = "14.335,41.330,14.390,41.370";
+---
+
+<BaseLayout title="Contatti" canonicalPath="/contatti" jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl px-4 pt-8 sm:px-6">
+    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Contatti" }]} />
+  </div>
+  <header class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+    <h1 class="text-4xl font-semibold text-ink sm:text-5xl">Contatti</h1>
+  </header>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto grid max-w-5xl gap-10 px-4 py-8 sm:px-6 md:grid-cols-2">
+      <div>
+        <SectionHeading title="I nostri recapiti" />
+        <ul class="mt-6 space-y-3 text-ink/80">
+          <li>{CONTACTS.address.street}, {CONTACTS.address.postalCode} {CONTACTS.address.city} ({CONTACTS.address.province})</li>
+          <li><a href={`mailto:${CONTACTS.email}`} class="underline">{CONTACTS.email}</a></li>
+          <li><a href={`tel:${CONTACTS.phone}`} class="underline">{CONTACTS.phoneDisplay}</a></li>
+        </ul>
+        <div class="mt-6"><SocialLinks /></div>
+        <div class="mt-8 overflow-hidden rounded-2xl border border-black/10">
+          <iframe
+            title="Mappa della sede di Passi Condivisi"
+            src={`https://www.openstreetmap.org/export/embed.html?bbox=${mapBbox}&layer=mapnik`}
+            class="h-72 w-full"
+            loading="lazy"
+          ></iframe>
+          <p class="bg-white px-3 py-2 text-xs text-ink/60">Zona indicativa: Piedimonte Matese (CE)</p>
+        </div>
+      </div>
+      <div>
+        <SectionHeading title="Scrivici" />
+        <div class="mt-6"><ContactForm /></div>
+      </div>
+    </div>
+  </ScrollReveal>
+</BaseLayout>

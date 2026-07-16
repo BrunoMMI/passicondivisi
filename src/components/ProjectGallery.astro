@@ -1,0 +1,106 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface GalleryImage {
+  src: ImageMetadata;
+  alt: string;
+}
+
+interface Props {
+  images: GalleryImage[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="relative">
+  <div
+    id="gallery-scroll"
+    class="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
+    role="region"
+    aria-label="Galleria fotografica, scorrimento orizzontale"
+    tabindex="0"
+  >
+    {
+      images.map((image, index) => (
+        <button
+          type="button"
+          data-gallery-item
+          data-index={index}
+          class="group w-[78%] shrink-0 snap-start overflow-hidden rounded-2xl sm:w-[46%] lg:w-[31%]"
+          aria-label={`Apri in dimensione grande: ${image.alt}`}
+        >
+          <Image
+            src={image.src}
+            alt={image.alt}
+            width={640}
+            height={480}
+            loading="lazy"
+            class="h-64 w-full object-cover transition-transform duration-300 group-hover:scale-105 sm:h-72"
+          />
+        </button>
+      ))
+    }
+  </div>
+
+  <div class="mt-4 flex justify-end gap-3">
+    <button
+      type="button"
+      data-gallery-prev
+      class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl text-ink shadow-sm transition-colors hover:bg-brand-purple hover:text-white"
+      aria-label="Scorri la galleria a sinistra"
+    >
+      ‹
+    </button>
+    <button
+      type="button"
+      data-gallery-next
+      class="flex h-11 w-11 items-center justify-center rounded-full bg-white text-xl text-ink shadow-sm transition-colors hover:bg-brand-purple hover:text-white"
+      aria-label="Scorri la galleria a destra"
+    >
+      ›
+    </button>
+  </div>
+</div>
+
+<div
+  id="gallery-lightbox"
+  class="fixed inset-0 z-70 flex items-center justify-center bg-black/80 p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Galleria fotografica"
+  hidden
+>
+  <button
+    id="gallery-lightbox-close"
+    type="button"
+    class="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white"
+    aria-label="Chiudi la galleria"
+  >
+    ✕
+  </button>
+  <button
+    id="gallery-lightbox-prev"
+    type="button"
+    class="absolute left-4 rounded-full bg-white/10 p-3 text-white"
+    aria-label="Foto precedente"
+  >
+    ‹
+  </button>
+  <img id="gallery-lightbox-image" src="" alt="" class="max-h-[85vh] max-w-[90vw] rounded-lg object-contain" />
+  <button
+    id="gallery-lightbox-next"
+    type="button"
+    class="absolute right-4 rounded-full bg-white/10 p-3 text-white"
+    aria-label="Foto successiva"
+  >
+    ›
+  </button>
+</div>
+
+<script define:vars={{ sources: images.map((i) => i.src.src), alts: images.map((i) => i.alt) }}>
+  window.__galleryData = { sources, alts };
+</script>
+<script src="../scripts/gallery-lightbox.ts"></script>
+<script src="../scripts/gallery-carousel.ts"></script>

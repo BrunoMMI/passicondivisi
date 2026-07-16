@@ -1,0 +1,38 @@
+---
+import { SEO_DEFAULTS } from "../data/seo";
+import { SITE } from "../data/site";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalPath: string;
+  ogImage?: string;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const {
+  title,
+  description = SEO_DEFAULTS.description,
+  canonicalPath,
+  ogImage = SEO_DEFAULTS.ogImage,
+  jsonLd = [],
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, SITE.url).toString();
+const ogImageUrl = new URL(ogImage, SITE.url).toString();
+---
+
+<title>{title} · Passi Condivisi</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content="it_IT" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+{jsonLd.map((entry) => <script type="application/ld+json" is:inline set:html={JSON.stringify(entry)} />)}

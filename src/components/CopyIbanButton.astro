@@ -1,0 +1,18 @@
+---
+interface Props {
+  iban: string;
+}
+
+const { iban } = Astro.props;
+---
+
+<button
+  id="copy-iban-button"
+  type="button"
+  data-iban={iban}
+  class="rounded-full bg-brand-purple px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-purple-dark"
+>
+  Copia IBAN
+</button>
+<p id="copy-iban-feedback" class="sr-only mt-2 text-sm text-brand-purple" role="status" aria-live="polite"></p>
+<script src="../scripts/copy-iban.ts"></script>

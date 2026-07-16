@@ -1,0 +1,100 @@
+---
+const formEndpoint = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT ?? "";
+---
+
+<form id="contact-form" action={formEndpoint} method="POST" novalidate class="space-y-5">
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="cf-nome" class="block text-sm font-medium text-ink">Nome *</label>
+      <input
+        id="cf-nome"
+        name="nome"
+        type="text"
+        required
+        class="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2"
+        aria-describedby="cf-nome-error"
+      />
+      <p id="cf-nome-error" class="mt-1 text-sm text-brand-red" role="alert"></p>
+    </div>
+    <div>
+      <label for="cf-cognome" class="block text-sm font-medium text-ink">Cognome o organizzazione *</label>
+      <input
+        id="cf-cognome"
+        name="cognome"
+        type="text"
+        required
+        class="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2"
+        aria-describedby="cf-cognome-error"
+      />
+      <p id="cf-cognome-error" class="mt-1 text-sm text-brand-red" role="alert"></p>
+    </div>
+  </div>
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="cf-email" class="block text-sm font-medium text-ink">Email *</label>
+      <input
+        id="cf-email"
+        name="email"
+        type="email"
+        required
+        class="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2"
+        aria-describedby="cf-email-error"
+      />
+      <p id="cf-email-error" class="mt-1 text-sm text-brand-red" role="alert"></p>
+    </div>
+    <div>
+      <label for="cf-telefono" class="block text-sm font-medium text-ink">Telefono (facoltativo)</label>
+      <input id="cf-telefono" name="telefono" type="tel" class="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2" />
+    </div>
+  </div>
+  <div>
+    <label for="cf-argomento" class="block text-sm font-medium text-ink">Argomento *</label>
+    <select id="cf-argomento" name="argomento" required class="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2">
+      <option value="">Seleziona...</option>
+      <option value="servizi">Informazioni sui servizi</option>
+      <option value="sostegno">Sostenere Passi Condivisi</option>
+      <option value="collaborazione">Proposta di collaborazione</option>
+      <option value="altro">Altro</option>
+    </select>
+  </div>
+  <div>
+    <label for="cf-messaggio" class="block text-sm font-medium text-ink">Messaggio *</label>
+    <textarea
+      id="cf-messaggio"
+      name="messaggio"
+      rows="5"
+      required
+      class="mt-1 w-full rounded-lg border border-ink/20 px-3 py-2"
+      aria-describedby="cf-messaggio-error"
+    ></textarea>
+    <p id="cf-messaggio-error" class="mt-1 text-sm text-brand-red" role="alert"></p>
+  </div>
+  <div class="flex items-start gap-3">
+    <input id="cf-privacy" name="privacy" type="checkbox" required class="mt-1" aria-describedby="cf-privacy-error" />
+    <label for="cf-privacy" class="text-sm text-ink/80">
+      Ho letto e accetto la <a href="/privacy-policy" class="underline">Privacy Policy</a>. *
+    </label>
+  </div>
+  <p id="cf-privacy-error" class="text-sm text-brand-red" role="alert"></p>
+  <div class="hidden" aria-hidden="true">
+    <label for="cf-company">Non compilare questo campo</label>
+    <input id="cf-company" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+  <div id="contact-form-status" class="text-sm" role="status" aria-live="polite"></div>
+  <button
+    id="contact-form-submit"
+    type="submit"
+    class="rounded-full bg-brand-purple px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-purple-dark disabled:opacity-60"
+  >
+    Invia messaggio
+  </button>
+  {
+    !formEndpoint && (
+      <p class="text-sm text-brand-red">
+        Il form non è ancora collegato a un servizio di invio email: configura PUBLIC_FORMSPREE_ENDPOINT (vedi
+        README).
+      </p>
+    )
+  }
+</form>
+<script src="../scripts/contact-form.ts"></script>

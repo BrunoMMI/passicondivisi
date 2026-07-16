@@ -1,0 +1,54 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../data/site";
+import { CONTACTS } from "../data/contacts";
+const lastUpdated = "15 luglio 2026";
+---
+
+<BaseLayout title="Cookie Policy" canonicalPath="/cookie-policy">
+  <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <h1 class="text-4xl font-semibold text-ink">Cookie Policy</h1>
+    <p class="mt-2 text-sm text-ink/60">Ultimo aggiornamento: {lastUpdated}</p>
+    <p class="mt-6 text-sm text-ink/60">
+      Questo documento ha finalità informativa e non costituisce consulenza legale. Si raccomanda una verifica da
+      parte di un consulente privacy/DPO competente prima della pubblicazione definitiva del sito.
+    </p>
+
+    <section class="mt-10">
+      <h2 class="text-2xl font-semibold text-ink">Cosa sono i cookie</h2>
+      <p class="mt-3 text-ink/80">
+        I cookie sono piccoli file di testo che i siti visitati inviano al dispositivo dell'utente, dove vengono
+        memorizzati per essere ritrasmessi agli stessi siti alla visita successiva.
+      </p>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-2xl font-semibold text-ink">Cookie utilizzati da questo sito</h2>
+      <p class="mt-3 text-ink/80">
+        Al momento questo sito utilizza esclusivamente <strong>cookie tecnici necessari</strong> al corretto
+        funzionamento (ad esempio per memorizzare la scelta espressa nel banner cookie). Non sono attivi cookie
+        analitici o di marketing, e nessuno script di terze parti viene caricato prima di un eventuale consenso.
+      </p>
+      <p class="mt-3 text-ink/80">
+        Il banner presente sul sito consente comunque di gestire in modo granulare le categorie "analitici" e
+        "marketing", predisposte per un'eventuale attivazione futura: nessuno strumento in queste categorie è
+        attualmente installato.
+      </p>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-2xl font-semibold text-ink">Come gestire le preferenze</h2>
+      <p class="mt-3 text-ink/80">
+        Puoi modificare in qualsiasi momento le tue preferenze cookie tramite il link "Preferenze cookie" presente
+        nel footer di ogni pagina.
+      </p>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="text-2xl font-semibold text-ink">Titolare del trattamento</h2>
+      <p class="mt-3 text-ink/80">
+        {SITE.legalName} — <a href={`mailto:${CONTACTS.email}`} class="underline">{CONTACTS.email}</a>
+      </p>
+    </section>
+  </article>
+</BaseLayout>

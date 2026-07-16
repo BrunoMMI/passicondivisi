@@ -1,0 +1,45 @@
+---
+import { NAV_LINKS, DONATE_LINK } from "../data/navigation";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-40 bg-paper"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu di navigazione"
+  hidden
+>
+  <div class="flex justify-end p-4">
+    <button
+      id="mobile-menu-close"
+      type="button"
+      class="rounded-md p-2 text-2xl leading-none text-ink"
+      aria-label="Chiudi il menu"
+    >
+      ✕
+    </button>
+  </div>
+  <nav class="flex flex-col items-center gap-6 px-6 py-8" aria-label="Navigazione principale (mobile)">
+    {
+      NAV_LINKS.map((link) => (
+        <a
+          href={link.href}
+          class="text-lg font-medium text-ink hover:text-brand-purple"
+          aria-current={currentPath === link.href ? "page" : undefined}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <a href={DONATE_LINK.href} class="rounded-full bg-brand-purple px-6 py-3 text-lg font-semibold text-white">
+      {DONATE_LINK.label}
+    </a>
+  </nav>
+</div>

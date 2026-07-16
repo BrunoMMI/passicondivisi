@@ -1,0 +1,49 @@
+---
+---
+
+<div
+  id="cookie-preferences"
+  class="fixed inset-0 z-60 flex items-center justify-center bg-black/40 p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cookie-preferences-title"
+  hidden
+>
+  <div class="w-full max-w-lg rounded-2xl bg-white p-6">
+    <div class="flex items-center justify-between">
+      <h2 id="cookie-preferences-title" class="text-xl font-semibold text-ink">Preferenze cookie</h2>
+      <button id="cookie-preferences-close" type="button" aria-label="Chiudi" class="rounded-md p-1 text-xl leading-none">
+        ✕
+      </button>
+    </div>
+    <div class="mt-4 space-y-4 text-sm text-ink">
+      <div class="flex items-start gap-3">
+        <input type="checkbox" checked disabled class="mt-1" id="cookie-pref-necessary" />
+        <label for="cookie-pref-necessary">
+          <strong>Necessari</strong> — sempre attivi, indispensabili al funzionamento del sito.
+        </label>
+      </div>
+      <div class="flex items-start gap-3">
+        <input type="checkbox" class="mt-1" id="cookie-pref-analytics" />
+        <label for="cookie-pref-analytics">
+          <strong>Analitici</strong> — attualmente non utilizzati sul sito; l'opzione resta disponibile per
+          un'eventuale attivazione futura, solo dopo il tuo consenso.
+        </label>
+      </div>
+      <div class="flex items-start gap-3">
+        <input type="checkbox" class="mt-1" id="cookie-pref-marketing" />
+        <label for="cookie-pref-marketing">
+          <strong>Marketing</strong> — attualmente non utilizzati sul sito; l'opzione resta disponibile per
+          un'eventuale attivazione futura, solo dopo il tuo consenso.
+        </label>
+      </div>
+    </div>
+    <button
+      id="cookie-preferences-save"
+      type="button"
+      class="mt-6 w-full rounded-full bg-brand-purple px-4 py-2 text-sm font-medium text-white"
+    >
+      Salva preferenze
+    </button>
+  </div>
+</div>

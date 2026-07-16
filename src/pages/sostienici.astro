@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import BankDetailsCard from "../components/BankDetailsCard.astro";
+
+const jsonLd = [
+  { "@context": "https://schema.org", "@type": "WebPage", name: "Sostienici" },
+  {
+    "@context": "https://schema.org",
+    "@type": "DonateAction",
+    name: "Sostieni Passi Condivisi",
+    recipient: { "@type": "NGO", name: "Passi Condivisi Società Cooperativa Sociale ETS" },
+  },
+];
+---
+
+<BaseLayout title="Sostienici" canonicalPath="/sostienici" jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl px-4 pt-8 sm:px-6">
+    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Sostienici" }]} />
+  </div>
+  <header class="mx-auto max-w-4xl px-4 py-12 sm:px-6">
+    <h1 class="text-4xl font-semibold text-ink sm:text-5xl">Sostienici</h1>
+    <p class="mt-6 text-lg text-ink/70">
+      Per noi prendersi cura significa restituire dignità, aiutare una persona a conservare e sviluppare la propria
+      autonomia, creare occasioni di incontro che spezzino la solitudine. Il tuo sostegno rende possibile tutto
+      questo.
+    </p>
+  </header>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto grid max-w-4xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 md:items-start">
+      <div>
+        <SectionHeading title="Dona con un bonifico" />
+        <p class="mt-4 text-ink/70">
+          Puoi sostenere Passi Condivisi con un bonifico bancario ai dati riportati qui a fianco. Ogni contributo ci
+          aiuta a costruire percorsi di autonomia, relazione e comunità per le persone che accompagniamo.
+        </p>
+      </div>
+      <BankDetailsCard />
+    </div>
+  </ScrollReveal>
+
+  <!--
+    Area predisposta per una futura integrazione di pagamento online (es. Stripe o PayPal).
+    Attualmente disattivata: nessuno script o SDK di terze parti è caricato.
+    Per attivarla in futuro: aggiungere qui il componente/embed ufficiale del provider scelto
+    e rimuovere questo commento.
+  -->
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6">
+      <p class="text-ink/70">Hai domande su come sostenerci o vuoi proporre una collaborazione?</p>
+      <a href="/contatti" class="mt-6 inline-block rounded-full bg-brand-purple px-6 py-3 font-semibold text-white">
+        Contattaci
+      </a>
+    </div>
+  </ScrollReveal>
+</BaseLayout>

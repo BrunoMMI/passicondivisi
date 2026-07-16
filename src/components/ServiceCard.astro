@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+import type { Service } from "../data/services";
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const borderColor: Record<Service["colorToken"], string> = {
+  "brand-red": "border-brand-red",
+  "brand-orange": "border-brand-orange",
+  "brand-green": "border-brand-green",
+  "brand-blue": "border-brand-blue",
+};
+---
+
+<article class:list={["overflow-hidden rounded-2xl border-t-4 bg-white shadow-sm", borderColor[service.colorToken]]}>
+  <Image
+    src={service.image}
+    alt={service.imageAlt}
+    width={640}
+    height={360}
+    loading="lazy"
+    class="h-44 w-full object-cover"
+  />
+  <div class="p-6">
+    <h3 class="text-xl font-semibold text-ink">{service.title}</h3>
+    <p class="mt-2 text-ink/70">{service.summary}</p>
+    <ul class="mt-4 space-y-2 text-sm text-ink/80">
+      {
+        service.objectives.map((objective) => (
+          <li class="flex gap-2">
+            <span aria-hidden="true">•</span>
+            <span>{objective}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</article>

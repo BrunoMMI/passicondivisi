@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import { NAV_LINKS, DONATE_LINK } from "../data/navigation";
+import { SITE } from "../data/site";
+import MobileMenu from "./MobileMenu.astro";
+import brandLogo from "../assets/brand/logo-full.png";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-50 border-b border-black/5 bg-paper/95 backdrop-blur transition-shadow duration-300"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+    <a href="/" class="flex items-center gap-2" aria-label={`${SITE.name} — torna alla home`}>
+      <Image src={brandLogo} alt={`Logo ${SITE.legalName}`} width={48} height={58} class="h-12 w-auto" />
+    </a>
+    <nav aria-label="Navigazione principale" class="hidden items-center gap-6 lg:flex">
+      {
+        NAV_LINKS.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm font-medium text-ink transition-colors hover:text-brand-purple"
+            aria-current={currentPath === link.href ? "page" : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href={DONATE_LINK.href}
+        class="rounded-full bg-brand-purple px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-purple-dark"
+      >
+        {DONATE_LINK.label}
+      </a>
+    </nav>
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="inline-flex flex-col justify-center gap-1.5 rounded-md p-2 lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Apri il menu di navigazione"
+    >
+      <span class="block h-0.5 w-6 bg-ink" aria-hidden="true"></span>
+      <span class="block h-0.5 w-6 bg-ink" aria-hidden="true"></span>
+      <span class="block h-0.5 w-6 bg-ink" aria-hidden="true"></span>
+    </button>
+  </div>
+  <MobileMenu currentPath={currentPath} />
+</header>
+<script src="../scripts/mobile-menu.ts"></script>

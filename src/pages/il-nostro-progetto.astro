@@ -1,0 +1,180 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import ScrollReveal from "../components/ScrollReveal.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import ProjectGallery from "../components/ProjectGallery.astro";
+import { Image } from "astro:assets";
+import sedeFinitaReception01 from "../assets/gallery/sede-finita-reception-01.jpg";
+import sedeFinitaRelax from "../assets/gallery/sede-finita-relax.jpg";
+import sedeFinitaReception02 from "../assets/gallery/sede-finita-reception-02.jpg";
+import setup01 from "../assets/gallery/setup-01.jpg";
+import setup02 from "../assets/gallery/setup-02.jpg";
+import setup03 from "../assets/gallery/setup-03.jpg";
+import setup04 from "../assets/gallery/setup-04.jpg";
+import setup05 from "../assets/gallery/setup-05.jpg";
+import setup06 from "../assets/gallery/setup-06.jpg";
+import setup07 from "../assets/gallery/setup-07.jpg";
+import setup08 from "../assets/gallery/setup-08.jpg";
+import setup09 from "../assets/gallery/setup-09.jpg";
+import setup10 from "../assets/gallery/setup-10.jpg";
+import setup11 from "../assets/gallery/setup-11.jpg";
+import setup12 from "../assets/gallery/setup-12.jpg";
+import setup13 from "../assets/gallery/setup-13.jpg";
+import setup14 from "../assets/gallery/setup-14.jpg";
+import setup15 from "../assets/gallery/setup-15.jpg";
+import setup16 from "../assets/gallery/setup-16.jpg";
+import setup17 from "../assets/gallery/setup-17.jpg";
+
+const galleryImages = [
+  { src: setup01, alt: "Due componenti del team riordinano l'ufficio della sede, con faldoni e uno scatolone su un carrello" },
+  { src: setup02, alt: "Tre membri del team, con il pollice alzato, tra le assi di legno della parete in costruzione" },
+  { src: setup03, alt: "Montaggio di un pannello in un ambiente scarsamente illuminato durante i lavori serali" },
+  { src: setup04, alt: "I fondatori trasportano assi di legno e avvitano i pannelli della nuova sede" },
+  { src: setup05, alt: "Rifinitura di un infisso, seduti a terra, durante l'allestimento della sede" },
+  { src: setup06, alt: "Fissaggio di un pannello al soffitto durante i lavori di allestimento" },
+  { src: setup07, alt: "Il team coordina il montaggio dei pannelli divisori tra le strutture in cartongesso" },
+  { src: setup08, alt: "Trasporto di materiali vicino all'ingresso della sede" },
+  { src: setup09, alt: "Lavori di rifinitura vicino a un infisso, con profili metallici posati a terra" },
+  { src: setup10, alt: "Il team sorride, pollice alzato, durante il montaggio delle pareti divisorie" },
+  { src: setup11, alt: "Il team attraversa il cortile alberato nei pressi della sede" },
+  { src: setup12, alt: "Tre persone assemblano la struttura del controsoffitto con pannelli gialli" },
+  { src: setup13, alt: "Un momento di sorrisi e leggerezza durante una pausa dai lavori" },
+  { src: setup14, alt: "Montaggio serale in un ambiente in penombra, con rilevatori pronti per l'installazione" },
+  { src: setup15, alt: "Il team riordina scatoloni e faldoni su un carrello durante l'allestimento degli uffici" },
+  { src: setup16, alt: "Il team monta un pannello a soffitto, sorridendo con il pollice alzato" },
+  { src: setup17, alt: "Vista d'insieme della sede su due livelli, con i materiali accatastati durante l'allestimento" },
+];
+
+const resultsImages = [
+  { src: sedeFinitaReception01, alt: "La reception della sede completata, con acquario e area di attesa" },
+  { src: sedeFinitaRelax, alt: "L'area relax della sede completata, con divano e libreria affacciati sul cortile" },
+  { src: sedeFinitaReception02, alt: "La reception della sede completata vista dall'ingresso, con l'ufficio sullo sfondo" },
+];
+
+const jsonLd = [{ "@context": "https://schema.org", "@type": "WebPage", name: "Il nostro progetto" }];
+---
+
+<BaseLayout title="Il nostro progetto" canonicalPath="/il-nostro-progetto" jsonLd={jsonLd}>
+  <div class="mx-auto max-w-4xl px-4 pt-8 sm:px-6">
+    <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Il nostro progetto" }]} />
+  </div>
+
+  <header class="mx-auto max-w-3xl px-4 py-12 text-center sm:px-6">
+    <h1 class="text-4xl font-semibold text-ink sm:text-5xl">Il nostro progetto</h1>
+    <p class="mt-6 text-lg text-ink/70">
+      Dietro ogni servizio di Passi Condivisi c'è un progetto concreto: la costruzione, passo dopo passo, di una
+      sede operativa pensata per accogliere persone, famiglie e percorsi di autonomia.
+    </p>
+  </header>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <div class="rounded-3xl bg-white p-8 shadow-sm sm:p-10">
+        <SectionHeading title="Il bisogno a cui rispondiamo" align="center" />
+        <p class="mx-auto mt-6 max-w-2xl text-center text-ink/80">
+          Crediamo che ogni anziano custodisca un patrimonio di memoria, esperienza e valori che appartiene
+          all'intera comunità, e che ogni persona con disabilità possieda capacità, sensibilità e talenti che
+          aspettano soltanto di essere scoperti e valorizzati. Da qui nasce la necessità di uno spazio fisico
+          dedicato, in cui questi percorsi possano prendere forma ogni giorno.
+        </p>
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <div class="rounded-3xl bg-white p-8 shadow-sm sm:p-10">
+        <SectionHeading title="Obiettivi e metodologia" align="center" />
+        <div class="mx-auto mt-6 max-w-2xl space-y-4 text-ink/80">
+          <p>
+            <strong>La conquista dell'autonomia</strong>, intesa non come una meta astratta ma come un cammino
+            quotidiano fatto di piccoli, grandiosi traguardi: saper scegliere, comunicare i propri bisogni,
+            muoversi nello spazio, gestire piccoli compiti personali e domestici.
+          </p>
+          <p>
+            <strong>La dignità dell'inclusione</strong>: i nostri spazi e le nostre attività sono ponti gettati
+            verso l'esterno, che permettono alle persone di essere integrate in un tessuto sociale che impara a
+            guardarle attraverso la lente della risorsa, non del limite.
+          </p>
+        </div>
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <div class="rounded-3xl bg-white p-8 shadow-sm sm:p-10">
+        <SectionHeading title="Territorio e persone coinvolte" align="center" />
+        <p class="mx-auto mt-6 max-w-2xl text-center text-ink/80">
+          Il progetto prende vita a Piedimonte Matese (CE), grazie al lavoro diretto dei fondatori della
+          cooperativa, Melania e Gianmarco, e delle persone che li affiancano nella costruzione quotidiana della
+          sede e delle attività.
+        </p>
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <SectionHeading
+        title="La nascita della sede: la nostra galleria"
+        subtitle="Il racconto per immagini dell'allestimento della sede operativa. Scorri per vedere tutte le foto."
+        align="center"
+      />
+      <div class="mt-8">
+        <ProjectGallery images={galleryImages} />
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <div class="rounded-3xl bg-white p-8 shadow-sm sm:p-10">
+        <SectionHeading title="Risultati e sviluppi futuri" align="center" />
+        <p class="mx-auto mt-6 max-w-2xl text-center text-ink/80">
+          Oggi la sede è completa e operativa: uno spazio accogliente, pensato nei minimi dettagli per accompagnare
+          persone e famiglie nei loro percorsi quotidiani.
+        </p>
+        <div class="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
+          <Image
+            src={sedeFinitaReception01}
+            alt={resultsImages[0].alt}
+            width={640}
+            height={480}
+            loading="lazy"
+            class="h-56 w-full rounded-2xl object-cover shadow-sm sm:col-span-2 sm:h-72"
+          />
+          <Image
+            src={sedeFinitaRelax}
+            alt={resultsImages[1].alt}
+            width={640}
+            height={480}
+            loading="lazy"
+            class="h-56 w-full rounded-2xl object-cover shadow-sm"
+          />
+          <Image
+            src={sedeFinitaReception02}
+            alt={resultsImages[2].alt}
+            width={640}
+            height={480}
+            loading="lazy"
+            class="h-56 w-full rounded-2xl object-cover shadow-sm"
+          />
+        </div>
+        <p class="mx-auto mt-8 max-w-2xl text-center text-ink/80">
+          [INSERIRE SVILUPPI FUTURI DEL PROGETTO — dato non presente nei materiali forniti]
+        </p>
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6">
+      <p class="text-lg text-ink/80">Vuoi sostenere questo progetto o partecipare in prima persona?</p>
+      <a href="/sostienici" class="mt-6 inline-block rounded-full bg-brand-purple px-6 py-3 font-semibold text-white">
+        Sostieni Passi Condivisi
+      </a>
+    </div>
+  </ScrollReveal>
+</BaseLayout>
