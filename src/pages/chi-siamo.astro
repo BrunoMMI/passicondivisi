@@ -7,6 +7,7 @@ import { FOUNDERS } from "../data/founders";
 import { Image } from "astro:assets";
 import teamPhoto from "../assets/gallery/team-group.jpg";
 import foundersPortrait from "../assets/gallery/founders-portrait.jpg";
+import foerderzentrumLogo from "../assets/partners/foerderzentrum-ost-logo.png";
 
 const jsonLd = [{ "@context": "https://schema.org", "@type": "WebPage", name: "Chi siamo" }];
 ---
@@ -143,6 +144,42 @@ const jsonLd = [{ "@context": "https://schema.org", "@type": "WebPage", name: "C
           Il gruppo fondatore di Passi Condivisi
         </figcaption>
       </figure>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <div class="rounded-3xl bg-white p-8 shadow-sm sm:p-10">
+        <SectionHeading
+          eyebrow="Un'esperienza che continua"
+          title="Il legame con il Förderzentrum Ost"
+          align="center"
+        />
+        <div class="mx-auto mt-6 flex max-w-2xl flex-col items-center gap-6 sm:flex-row">
+          <Image
+            src={foerderzentrumLogo}
+            alt="Logo del Förderzentrum Ost"
+            width={285}
+            height={50}
+            class="h-auto w-40 flex-shrink-0 object-contain sm:w-48"
+          />
+          <p class="text-center text-ink/80 sm:text-left">
+            Prima di tornare in Italia per fondare Passi Condivisi, Melania ha lavorato per oltre dieci anni in
+            Germania presso il{" "}
+            <a
+              href="https://foerderzentrum-ost.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-brand-purple hover:underline"
+            >
+              Förderzentrum Ost
+            </a>, una scuola speciale del Kreis Viersen dedicata a bambini, ragazzi e giovani adulti con bisogni
+            educativi specifici legati al linguaggio, all'apprendimento e allo sviluppo emotivo e sociale. In
+            quegli anni ha costruito percorsi individualizzati, soprattutto con persone nello spettro autistico:
+            un'esperienza che oggi resta al centro del metodo e dei valori di Passi Condivisi.
+          </p>
+        </div>
+      </div>
     </div>
   </ScrollReveal>
 
