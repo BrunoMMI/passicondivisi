@@ -12,7 +12,12 @@ import foerderzentrumLogo from "../assets/partners/foerderzentrum-ost-logo.png";
 const jsonLd = [{ "@context": "https://schema.org", "@type": "WebPage", name: "Chi siamo" }];
 ---
 
-<BaseLayout title="Chi siamo" canonicalPath="/chi-siamo" jsonLd={jsonLd}>
+<BaseLayout
+  title="Chi siamo"
+  description="Scopri la storia di Passi Condivisi: la cooperativa sociale ETS di Piedimonte Matese (CE) fondata da Melania e Gianmarco per costruire autonomia, relazioni e comunità."
+  canonicalPath="/chi-siamo"
+  jsonLd={jsonLd}
+>
   <div class="mx-auto max-w-4xl px-4 pt-8 sm:px-6">
     <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Chi siamo" }]} />
   </div>

@@ -11,9 +11,10 @@ interface Props {
   canonicalPath: string;
   ogImage?: string;
   jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
 }
 
-const { title, description, canonicalPath, ogImage, jsonLd } = Astro.props;
+const { title, description, canonicalPath, ogImage, jsonLd, noindex } = Astro.props;
 ---
 
 <!doctype html>
@@ -27,8 +28,11 @@ const { title, description, canonicalPath, ogImage, jsonLd } = Astro.props;
       canonicalPath={canonicalPath}
       ogImage={ogImage}
       jsonLd={jsonLd}
+      noindex={noindex}
     />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body class="bg-paper text-ink antialiased">

@@ -3,5 +3,5 @@ export const BANK = {
   ibanDisplay: "IT18 U053 8774 9400 0000 4798 849",
   bankName: "BPER Banca",
   bic: "BPMOIT22XXX",
-  accountHolder: "[INSERIRE INTESTATARIO CONTO]",
+  accountHolder: "Gianmarco Pascale",
 } as const;

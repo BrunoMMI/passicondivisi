@@ -5,7 +5,11 @@ import { CONTACTS } from "../data/contacts";
 const lastUpdated = "15 luglio 2026";
 ---
 
-<BaseLayout title="Privacy Policy" canonicalPath="/privacy-policy">
+<BaseLayout
+  title="Privacy Policy"
+  description="Informativa sul trattamento dei dati personali di Passi Condivisi Società Cooperativa Sociale ETS, ai sensi del GDPR."
+  canonicalPath="/privacy-policy"
+>
   <article class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
     <h1 class="text-4xl font-semibold text-ink">Privacy Policy</h1>
     <p class="mt-2 text-sm text-ink/60">Ultimo aggiornamento: {lastUpdated}</p>
@@ -19,7 +23,6 @@ const lastUpdated = "15 luglio 2026";
         <li><a href="#titolare" class="underline">Titolare del trattamento</a></li>
         <li><a href="#finalita" class="underline">Finalità del trattamento</a></li>
         <li><a href="#basi" class="underline">Basi giuridiche</a></li>
-        <li><a href="#conservazione" class="underline">Conservazione dei dati</a></li>
         <li><a href="#destinatari" class="underline">Destinatari dei dati</a></li>
         <li><a href="#diritti" class="underline">Diritti dell'interessato</a></li>
         <li><a href="#cookie" class="underline">Cookie</a></li>
@@ -51,19 +54,12 @@ const lastUpdated = "15 luglio 2026";
       </p>
     </section>
 
-    <section id="conservazione" class="mt-10">
-      <h2 class="text-2xl font-semibold text-ink">Conservazione dei dati</h2>
-      <p class="mt-3 text-ink/80">
-        [INSERIRE PERIODO DI CONSERVAZIONE DEI DATI — informazione non fornita nei materiali disponibili]
-      </p>
-    </section>
-
     <section id="destinatari" class="mt-10">
       <h2 class="text-2xl font-semibold text-ink">Destinatari dei dati</h2>
       <p class="mt-3 text-ink/80">
-        I dati inviati tramite il modulo di contatto sono trasmessi al fornitore del servizio di gestione form
-        (Formspree) esclusivamente per il recapito del messaggio. [INSERIRE EVENTUALI ALTRI DESTINATARI/RESPONSABILI
-        DEL TRATTAMENTO, se presenti]
+        Compilando il modulo di contatto, i dati inseriti vengono predisposti in un messaggio che l'utente stesso
+        invia, tramite WhatsApp, al numero di Passi Condivisi indicato sul sito. Il messaggio è quindi trasmesso a
+        WhatsApp (Meta) secondo i termini e l'informativa privacy del servizio stesso.
       </p>
     </section>
 

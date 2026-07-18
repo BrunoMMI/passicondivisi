@@ -47,13 +47,35 @@ function validate(form: HTMLFormElement): boolean {
   return valid;
 }
 
+function buildWhatsappMessage(form: HTMLFormElement): string {
+  const value = (id: string) => form.querySelector<HTMLInputElement | HTMLTextAreaElement>(id)?.value.trim() ?? "";
+
+  const argomentoSelect = form.querySelector<HTMLSelectElement>("#cf-argomento")!;
+  const argomento = argomentoSelect.options[argomentoSelect.selectedIndex]?.text ?? "";
+
+  const lines = [
+    "Ciao Passi Condivisi, vi scrivo dal sito:",
+    `Nome: ${value("#cf-nome")} ${value("#cf-cognome")}`,
+    `Email: ${value("#cf-email")}`,
+  ];
+
+  const telefono = value("#cf-telefono");
+  if (telefono) lines.push(`Telefono: ${telefono}`);
+
+  lines.push(`Argomento: ${argomento}`, "", value("#cf-messaggio"));
+
+  return lines.join("\n");
+}
+
 function init(): void {
   const form = document.getElementById("contact-form") as HTMLFormElement | null;
   const status = document.getElementById("contact-form-status");
   const submitButton = document.getElementById("contact-form-submit") as HTMLButtonElement | null;
   if (!form || !status || !submitButton) return;
 
-  form.addEventListener("submit", async (event) => {
+  const whatsappNumber = form.dataset.whatsapp?.replace(/\D/g, "");
+
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const honeypot = form.querySelector<HTMLInputElement>("#cf-company");
@@ -64,32 +86,17 @@ function init(): void {
       return;
     }
 
-    const endpoint = form.getAttribute("action");
-    if (!endpoint) {
-      status.textContent = "Il form non è ancora collegato a un servizio di invio. Contattaci via email nel frattempo.";
+    if (!whatsappNumber) {
+      status.textContent = "Il form non è ancora collegato a un numero WhatsApp.";
       return;
     }
 
-    submitButton.disabled = true;
-    status.textContent = "Invio in corso...";
+    const message = buildWhatsappMessage(form);
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener");
 
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" },
-      });
-      if (response.ok) {
-        status.textContent = "Messaggio inviato. Ti risponderemo il prima possibile.";
-        form.reset();
-      } else {
-        status.textContent = "Invio non riuscito. Riprova più tardi o scrivici via email.";
-      }
-    } catch {
-      status.textContent = "Invio non riuscito per un problema di connessione. Riprova più tardi.";
-    } finally {
-      submitButton.disabled = false;
-    }
+    status.textContent = "Stiamo per aprire WhatsApp con il messaggio pronto: conferma l'invio da lì per completarlo.";
+    form.reset();
   });
 }
 

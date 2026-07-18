@@ -5,10 +5,12 @@ import SectionHeading from "../components/SectionHeading.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import CallToAction from "../components/CallToAction.astro";
 import ScrollReveal from "../components/ScrollReveal.astro";
+import Faq from "../components/Faq.astro";
 import { Image } from "astro:assets";
 import { SITE } from "../data/site";
 import { CONTACTS } from "../data/contacts";
 import { SERVICES } from "../data/services";
+import { FAQ } from "../data/faq";
 import companionshipImage from "../assets/stock/home-intro-companionship.jpg";
 
 const jsonLd = [
@@ -16,7 +18,9 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "NGO",
     name: SITE.legalName,
+    alternateName: SITE.name,
     url: SITE.url,
+    logo: new URL("/favicon-512.png", SITE.url).toString(),
     email: CONTACTS.email,
     telephone: CONTACTS.phone,
     address: {
@@ -27,6 +31,7 @@ const jsonLd = [
       addressRegion: CONTACTS.address.province,
       addressCountry: "IT",
     },
+    sameAs: [CONTACTS.instagramUrl, CONTACTS.facebookUrl],
   },
   { "@context": "https://schema.org", "@type": "WebSite", name: SITE.name, url: SITE.url },
 ];
@@ -91,6 +96,15 @@ const jsonLd = [
         <a href="/il-nostro-progetto" class="font-semibold text-brand-purple hover:underline">
           Conosci il nostro progetto →
         </a>
+      </div>
+    </div>
+  </ScrollReveal>
+
+  <ScrollReveal as="section">
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <SectionHeading eyebrow="FAQ" title="Domande frequenti" align="center" />
+      <div class="mt-10">
+        <Faq items={FAQ} />
       </div>
     </div>
   </ScrollReveal>

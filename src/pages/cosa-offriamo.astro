@@ -9,7 +9,12 @@ import { SERVICES } from "../data/services";
 const jsonLd = [{ "@context": "https://schema.org", "@type": "WebPage", name: "Cosa offriamo" }];
 ---
 
-<BaseLayout title="Cosa offriamo" canonicalPath="/cosa-offriamo" jsonLd={jsonLd}>
+<BaseLayout
+  title="Cosa offriamo"
+  description="Assistenza domiciliare, mediazione familiare, assistenza scolastica specialistica e laboratori di educativa territoriale: i servizi di Passi Condivisi per anziani e persone con disabilità a Piedimonte Matese."
+  canonicalPath="/cosa-offriamo"
+  jsonLd={jsonLd}
+>
   <div class="mx-auto max-w-4xl px-4 pt-8 sm:px-6">
     <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Cosa offriamo" }]} />
   </div>

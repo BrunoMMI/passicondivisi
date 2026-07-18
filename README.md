@@ -84,19 +84,14 @@ Quando il dominio definitivo sarà attivo, aggiorna questi due punti (attualment
 
 `src/data/seo.ts` e `SeoHead.astro` derivano automaticamente gli URL canonici/OG da `SITE.url`, quindi non richiedono modifiche dirette.
 
-## Configurazione del form contatti (Formspree)
+## Configurazione del form contatti (WhatsApp)
 
-Il form nella pagina Contatti invia i dati a [Formspree](https://formspree.io):
+Il form nella pagina Contatti non ha un backend proprio: alla conferma, apre una chat WhatsApp precompilata con i
+dati inseriti, verso il numero definito in `src/data/contacts.ts` (campo `phone`). L'utente deve premere "Invia"
+dentro WhatsApp per completare l'invio — non esiste un modo gratuito per recapitare il messaggio senza
+quest'ultimo passaggio manuale (richiederebbe WhatsApp Business API, a pagamento e con approvazione Meta).
 
-1. Crea un account su formspree.io e un nuovo form.
-2. Copia `.env.example` in `.env`.
-3. Imposta `PUBLIC_FORMSPREE_ENDPOINT` con l'endpoint del tuo form, es.:
-   ```
-   PUBLIC_FORMSPREE_ENDPOINT=https://formspree.io/f/xxxxxxxx
-   ```
-4. Riavvia il dev server. `.env` non va mai committato (è già in `.gitignore`).
-
-Senza questa variabile impostata il form non ha un endpoint valido a cui inviare i dati.
+Per cambiare il numero di destinazione basta aggiornare `CONTACTS.phone` in `src/data/contacts.ts`.
 
 ## Cookie banner e consenso
 
@@ -117,21 +112,15 @@ Il sito è puramente statico (`output: "static"`), quindi funziona out-of-the-bo
 
 - **Build command:** `npm run build`
 - **Output directory:** `dist`
-- **Variabili d'ambiente da impostare sulla piattaforma:** `PUBLIC_FORMSPREE_ENDPOINT`
 
-Netlify e Vercel rilevano Astro automaticamente; non serve configurazione aggiuntiva oltre alla variabile d'ambiente sopra.
+Netlify e Vercel rilevano Astro automaticamente; non serve alcuna variabile d'ambiente per il form contatti (vedi sezione sopra).
 
 ## Segnaposto ancora da sostituire
 
 Il sito è stato costruito solo con dati reali forniti nei materiali del cliente (`file/`). Dove un'informazione non era disponibile è stato lasciato un segnaposto esplicito, da sostituire prima (o dopo) la messa online:
 
-- `src/data/bank.ts` → `accountHolder: "[INSERIRE INTESTATARIO CONTO]"` (intestatario del conto per le donazioni)
-- `src/pages/privacy-policy.astro` → `[INSERIRE PERIODO DI CONSERVAZIONE DEI DATI]` (periodo di conservazione dati, da definire con un legale)
-- `src/pages/privacy-policy.astro` → nota su eventuali altri destinatari/responsabili del trattamento oltre a Formspree
-- `src/pages/il-nostro-progetto.astro` → `[INSERIRE RISULTATI RAGGIUNTI E SVILUPPI FUTURI DEL PROGETTO]` (dato non presente nei materiali forniti)
 - Dominio placeholder `https://www.passicondivisi.it` in `astro.config.mjs` e `src/data/site.ts` (vedi sezione "Configurazione del dominio")
-- `PUBLIC_FORMSPREE_ENDPOINT` in `.env.example`/`.env` (vedi sezione sul form contatti)
 
 ## Nota legale
 
-I testi di **Privacy Policy** e **Cookie Policy** (`src/pages/privacy-policy.astro`, `src/pages/cookie-policy.astro`) sono stati scritti in base ai servizi effettivamente presenti sul sito (Formspree per il form contatti, nessun analytics attivo). Prima della pubblicazione è comunque consigliata una verifica da parte di un legale/consulente privacy, in particolare per il periodo di conservazione dati e per eventuali obblighi specifici della cooperativa.
+I testi di **Privacy Policy** e **Cookie Policy** (`src/pages/privacy-policy.astro`, `src/pages/cookie-policy.astro`) sono stati scritti in base ai servizi effettivamente presenti sul sito (invio del form contatti via WhatsApp, nessun analytics attivo). Prima della pubblicazione è comunque consigliata una verifica da parte di un legale/consulente privacy, in particolare per eventuali obblighi specifici della cooperativa.
